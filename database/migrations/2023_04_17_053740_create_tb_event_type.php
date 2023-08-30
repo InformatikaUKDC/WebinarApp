@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_event_type', function (Blueprint $table) {
-            $table->id();
-            $table->string('type', 255);
-        });
+        // Schema::create('tb_event_type', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('type', 255);
+        // });
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_event_type');
+        // Schema::dropIfExists('tb_event_type');
     }
 };
