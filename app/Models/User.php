@@ -17,11 +17,24 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $table = "tb_users";
+    protected $primaryKey = "id";
     protected $fillable = [
         'name',
         'email',
         'password',
+        'no_wa',
+        'gender',
+        'address',
+        'role_id',
+        'email_verified_at',
+        'remember_login',
+        'is_online',
+        'last_since',
+        'deleted_at'
     ];
+
+    public $timestapms = true;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -31,14 +44,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 }

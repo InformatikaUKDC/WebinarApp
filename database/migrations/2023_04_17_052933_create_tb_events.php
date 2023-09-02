@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('tb_events', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_id');
             $table->text('image');
             $table->string('title', 255);
             $table->text('description');
