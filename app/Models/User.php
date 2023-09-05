@@ -26,6 +26,7 @@ class User extends Authenticatable
         'no_wa',
         'gender',
         'address',
+        'institution',
         'role_id',
         'email_verified_at',
         'remember_login',
