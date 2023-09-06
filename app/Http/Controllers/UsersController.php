@@ -90,8 +90,7 @@ class UsersController extends Controller
                     'access_token' => $access_token,
                     'token_expires' => config('sanctum.expiration')
                 ], 200);
-            }
-            else {
+            } else {
                 return response()->json([
                     'message' =>  'Gagal login',
                     'error' => 'Password salah'
@@ -118,5 +117,21 @@ class UsersController extends Controller
     {
         $users = $this->usersModel->paginate(10);
         return response()->json($users, 200);
+    }
+
+    // delete user by Id
+    public function deleteUser($idUser)
+    {
+        try {
+            $user = $this->usersModel->find($idUser);
+            if (!empty($user) && $user->role_id == 2) {
+                $this->usersModel->where('id', '=', $idUser)->where('role_id', '=', 2)->delete();
+                return response()->json('User berhasil dihapus', 200);
+            } else {
+                return response()->json('User tidak ditemukan', 200);
+            }
+        } catch (\Throwable $th) {
+            return response()->json('User gagal dihapus', 200);
+        }
     }
 }

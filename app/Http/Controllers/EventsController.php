@@ -117,4 +117,15 @@ class EventsController extends Controller
             return response()->json('Event tidak ditemukan', 200);
         }
     }
+
+    // detail specific event
+    public function detailEvent($idEvent)
+    {
+        $event = $this->eventsModel->where('id', '=', $idEvent)->first();
+        if (!empty($event)) {
+            return response()->json($event, 200);
+        } else {
+            return response()->json('Event tidak ditemukan', 200);
+        }
+    }
 }
