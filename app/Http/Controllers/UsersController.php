@@ -134,4 +134,15 @@ class UsersController extends Controller
             return response()->json('User gagal dihapus', 200);
         }
     }
+
+    // detail user by Id
+    public function detailUser($idUser)
+    {
+        $user = $this->usersModel->where('id', '=', $idUser)->first();
+        if (!empty($user)) {
+            return response()->json($user, 200);
+        }else{
+            return response()->json('User tidak ditemukan');
+        }
+    }
 }

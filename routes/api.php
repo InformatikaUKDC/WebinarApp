@@ -22,9 +22,14 @@ Route::post('/login', [UsersController::class, 'login']);
 Route::get('/login', function () {
     return response()->json('Akun belum terauntentikasi', 200);
 })->name('login');
-Route::get('/logout', [UsersController::class, 'logout'])->middleware(['auth:sanctum']);
 
-// ---------------------------- MIDDLEWARE ROUTE
+// --------------------- MIDDLEWARE --> Role General
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get('/logout', [UsersController::class, 'logout']);
+    Route::get('/user/{id}', [UsersController::class, 'detailUser']);
+});
+
+// ---------------------------- MIDDLEWARE ROUTE --> Role Admin
 Route::group(['middleware' => ['user', 'auth:sanctum']], function () {
     Route::post('/event', [EventsController::class, 'addNewEvent']);
     Route::delete('/event-delete/{id}', [EventsController::class, 'deleteEvent']);

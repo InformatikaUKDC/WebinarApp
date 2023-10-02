@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 // ------------------------------- ROOT ROUTE
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
