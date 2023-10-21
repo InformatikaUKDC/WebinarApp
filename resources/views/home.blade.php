@@ -25,7 +25,8 @@
         }
 
         #sidebar {
-            height: 100vh;
+            height: 100%;
+            min-height: 100%;
             width: 250px;
             /* From https://css.glass */
             background: rgba(143, 143, 143, 0.24);
@@ -44,22 +45,44 @@
 <body>
     <div class="text-center" id="header">
         <h2 class="container my-3">API DOCS WEBINAR UKDC</h2>
+        <p class="m-0">v1.0</p>
     </div>
     <div class="d-flex">
         {{-- sidebar --}}
-        <div id="sidebar" class="m-3">
+        <div id="sidebar" class="m-3 sticky-top">
             <nav class="nav nav-pills p-4" aria-label="">
                 <a href="#about">About</a>
             </nav>
-            {{-- event API --}}
+
+            <!-- auth API -->
+            <nav class="nav nav-pills p-4" aria-label="">
+                <a href="#">Auth</a>
+                <nav class="nav nav-pills" aria-label="">
+                    <a class="nav-link" href="#get-events">Login User</a>
+                    <a class="nav-link" href="#get-events-detail">Logout User</a>
+                </nav>
+            </nav>
+
+            <!-- event API -->
             <nav class="nav nav-pills p-4" aria-label="">
                 <a href="#events">Events</a>
-                <nav class="nav nav-pills flex-column" aria-label="">
+                <nav class="nav nav-pills" aria-label="">
                     <a class="nav-link" href="#get-events">Get Events</a>
                     <a class="nav-link" href="#get-events-detail">Get Event Detail</a>
-                    <a class="nav-link" href="#create-event">Create Events</a>
-                    <a class="nav-link" href="#delete-event">Delete Events</a>
-                    <a class="nav-link" href="#update-event">Update Events</a>
+                    <a class="nav-link" href="#create-event">Create Event</a>
+                    <a class="nav-link" href="#delete-event">Delete Event</a>
+                    <a class="nav-link" href="#update-event">Update Event</a>
+                </nav>
+            </nav>
+
+            <!-- user API -->
+            <nav class="nav nav-pills p-4" aria-label="">
+                <a href="#events">Users</a>
+                <nav class="nav nav-pills" aria-label="">
+                    <a class="nav-link" href="#register-user">Register User</a>
+                    <a class="nav-link" href="#get-users">Get Users</a>
+                    <a class="nav-link" href="#delete-user">Delete User by ID</a>
+                    <a class="nav-link" href="#get-user-id">Get User by ID</a>
                 </nav>
             </nav>
         </div>
@@ -69,7 +92,34 @@
                     sehingga dapat
                     terintegrasi dengan Front End</p>
             </div>
-            <div id="events">
+
+            <!-- auth -->
+            <div id="auth" class="mt-5 mb-5 border-bottom border-secondary">
+                <h3>Auth</h3>
+                <p>Auth merupakan autentikasi yang dilakukan apabila hendak mengakses aplikasi</p>
+                <div id="get-users" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Login User</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-warning text-dark p-1 rounded">POST</p>
+                        <code class="fs-5">/api/login</code>
+                    </div>
+                    <p class="m-0">Request Body (form data)</p>
+                    <ul>
+                        <li>email</li>
+                        <li>password</li>
+                    </ul>
+                </div>
+                <div id="get-user-id" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Logout User</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-success text-white p-1 rounded">GET</p>
+                        <code class="fs-5">/api/logout</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- event -->
+            <div id="events" class="mt-5 mb-5 border-bottom border-secondary">
                 <h3>Events</h3>
                 <p>Event merupakan kegiatan yang akan diselenggarakan, baik secara <i>online</i> atau <i>offline</i></p>
                 <div id="get-events" class="my-3">
@@ -120,6 +170,50 @@
                     <code>
                         {"description" : "update data"}
                     </code>
+                </div>
+            </div>
+
+            <!-- user -->
+            <div id="users" class="mt-5 mb-5 border-bottom border-secondary">
+                <h3>Users</h3>
+                <p>User merupakan individu yang berpartisipasi dalam suatu event</p>
+                <div id="register-user" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Post User</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-warning text-dark p-1 rounded">POST</p>
+                        <code class="fs-5">/api/user</code>
+                    </div>
+                    <p class="m-0">Request Body (form-data)</p>
+                    <ul>
+                        <li>name</li>
+                        <li>email</li>
+                        <li>password</li>
+                        <li>no_wa</li>
+                        <li>gender</li>
+                        <li>address</li>
+                        <li>institution</li>
+                    </ul>
+                </div>
+                <div id="get-users" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Get Users</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-success text-white p-1 rounded">GET</p>
+                        <code class="fs-5">/api/users</code>
+                    </div>
+                </div>
+                <div id="get-user-id" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Get User By ID</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-success text-white p-1 rounded">GET</p>
+                        <code class="fs-5">/api/user/{id}</code>
+                    </div>
+                </div>
+                <div id="delete-user" class="my-3">
+                    <p class="fw-bold m-0 fs-5">Delete User</p>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="my-0 me-2 bg-danger text-white p-1 rounded">DELETE</p>
+                        <code class="fs-5">/api/user/{id}</code>
+                    </div>
                 </div>
             </div>
         </div>

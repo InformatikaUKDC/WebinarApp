@@ -78,7 +78,7 @@ class UsersController extends Controller
                 array_push($array_error, $validate->errors());
             }
 
-            //get email form database
+            //get email from database
             $email_user = $this->usersModel->where('email', '=', $request->input('email'))->first();
             if (Auth::attempt($request->only('email', 'password'))) {
                 $user_auth = Auth::user();
@@ -115,7 +115,7 @@ class UsersController extends Controller
     // view users
     public function viewUsers()
     {
-        $users = $this->usersModel->paginate(10);
+        $users = $this->usersModel->where('role_id', 2)->paginate(10);
         return response()->json($users, 200);
     }
 
@@ -124,6 +124,7 @@ class UsersController extends Controller
     {
         try {
             $user = $this->usersModel->find($idUser);
+            // delete user where role is not admin
             if (!empty($user) && $user->role_id == 2) {
                 $this->usersModel->where('id', '=', $idUser)->where('role_id', '=', 2)->delete();
                 return response()->json('User berhasil dihapus', 200);
