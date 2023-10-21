@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('tb_events', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_id');
             $table->text('image');
             $table->string('title', 255);
             $table->text('description');
@@ -24,8 +23,7 @@ return new class extends Migration
             $table->longText('speaker');
             $table->boolean('is_published');
             $table->text('link_feedback');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->timestamps();
             $table->softDeletes('deleted_at');
         });
     }

@@ -18,8 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->string('name', 255);
             $table->text('url');
-            $table->dateTime('created_at');
-            $table->dateTime('updated_at');
+            $table->timestamps();
             $table->softDeletes('deleted_at');
         });
     }

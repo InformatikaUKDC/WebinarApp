@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tb_events', function(Blueprint $table){
-            $table->foreign('type_id')->references('id')->on('tb_event_type');
-        });
+        // Schema::table('tb_events', function(Blueprint $table){
+        //     $table->foreign('type_id')->references('id')->on('tb_event_type');
+        // });
     }
 
     /**
